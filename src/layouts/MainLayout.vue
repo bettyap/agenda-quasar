@@ -1,6 +1,6 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
+    <q-header elevated class="bg-primary">
       <q-toolbar>
         <q-btn
           flat
@@ -12,10 +12,9 @@
         />
 
         <q-toolbar-title>
-          Quasar App
+          Agenda com Quasar
         </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
       </q-toolbar>
     </q-header>
 
@@ -25,11 +24,6 @@
       bordered
     >
       <q-list>
-        <q-item-label
-          header
-        >
-          Essential Links
-        </q-item-label>
 
         <EssentialLink
           v-for="link in essentialLinks"
