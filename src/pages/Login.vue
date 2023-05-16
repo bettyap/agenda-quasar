@@ -19,7 +19,15 @@
           placeholder="*****"
           :type="isPwd ? 'password' : 'text'" 
           :rules="[val => !!val || 'Senha é obrigatório']"
-        />
+        >
+          <template v-slot:append>
+            <q-icon
+              :name="isPwd ? 'visibility_off' : 'visibility'"
+              class="cursor-pointer"
+              @click="isPwd = !isPwd"
+            />
+          </template>
+        </q-input>
         <q-btn 
           label="Salvar"
           type="submit"
@@ -32,9 +40,13 @@
 
 <script>
 import { defineComponent } from 'vue'
-
 export default defineComponent({
-  name: 'IndexPage'
+  name: 'IndexPage',
+  data() {
+    return {
+      isPwd: true
+    }
+  },
 })
 </script>
 
