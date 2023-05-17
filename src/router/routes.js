@@ -4,6 +4,7 @@ const routes = [
     component: () => import('layouts/MainLayout.vue'),
     children: [
       { path: '', component: () => import('pages/IndexPage.vue') },
+      { path: '/meucadastro', component: () => import('pages/MeuCadastro.vue') },
     ]
   },
   {
@@ -17,6 +18,17 @@ const routes = [
     path: '/:catchAll(.*)*',
     component: () => import('pages/ErrorNotFound.vue')
   }
+
 ]
+
+  // router.beforeEach((to, _from, next) => {
+  //   const isAuthenticated = localStorage.getItem("token") ? true : false
+
+  //   if (to.name !== 'login' && !isAuthenticated){
+  //     next({ name: 'login' })
+  //   } else {
+  //     next()
+  //   }
+  // })
 
 export default routes
