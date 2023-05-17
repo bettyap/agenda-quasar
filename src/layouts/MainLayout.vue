@@ -51,14 +51,19 @@ const linksList = [
     link: ''
   },
   {
-    title:'Meu Cadastro',
+    title: 'Meu Cadastro',
     icon: 'person',
-    link: 'https://github.com/quasarframework'
+    link: '/#/meucadastro'
+  },
+  {
+    title: 'Cadastro de Pessoa',
+    icon: 'person',
+    link: '/#/cadastrarpessoa'
   },
   {
     title: 'Sair',
     icon: 'logout',
-    link: 'https://chat.quasar.dev'
+    link: 'login'
   },
 ]
 
