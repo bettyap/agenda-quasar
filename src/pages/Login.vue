@@ -2,7 +2,7 @@
   <div class="login-container">
     <q-card class="login-card">
       <h2 class="text-center">Agenda Pessoal</h2>
-      <q-form class="login-form">
+      <q-form class="login-form" @submit="login">
         <q-input
           outlined 
           label="Username"
@@ -39,14 +39,49 @@
 </template>
 
 <script>
+import api from '../services/api.js'
 import { defineComponent } from 'vue'
+import { Notify } from 'quasar'
 export default defineComponent({
   name: 'IndexPage',
   data() {
     return {
+      username: this.username,
+      password: this.password,
       isPwd: true
     }
   },
+  methods: {
+    login(event) {
+      event.preventDefault()
+
+      api.post('/auth/login', {
+        username: this.username,
+        password: this.password
+      }).then(response => {
+        const data = response.data
+
+        localStorage.setItem("token", data.accessToken);
+        api.defaults.headers.common['Authorization'] = "Bearer " + data.accessToken;
+
+        api.get('/usuario/buscar/' + data.id).then(userResponse => {
+          if (userResponse.status == 200) {
+            localStorage.setItem("user", JSON.stringify(userResponse.data.object.usuario))
+            this.$router.push('/')
+          }
+        })
+
+      }).catch((_error) => {
+        Notify.create({
+          message: 'Algo deu errado!',
+          color: 'negative',
+          position: 'top-right',
+          type: 'negative',
+          actions: [{ icon: 'close', color: 'white' }]
+        })
+      }) 
+    }
+  }
 })
 </script>
 
