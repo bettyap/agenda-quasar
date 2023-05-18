@@ -151,6 +151,7 @@ export default defineComponent({
             pais: this.endereco.pais
           }
         })
+
         Notify.create({
           message: 'Realizado com sucesso!',
           color: 'positive',
@@ -158,6 +159,7 @@ export default defineComponent({
           type: 'positive',
           actions: [{ icon: 'close', color: 'white' }]
         })
+        this.$router.push('/')
       } catch (error) {
         Notify.create({
           message: 'Algo deu errado!',
