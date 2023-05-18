@@ -56,6 +56,7 @@
 
 <script>
 import api from '../services/api.js'
+import { Dialog, Notify } from 'quasar'
 import { defineComponent } from 'vue'
 
 export default defineComponent({
@@ -102,12 +103,25 @@ export default defineComponent({
       this.currentPerson = pessoa
     },
     onCompleted() {
-      this.showModal = false
       this.infoUser()
     },
     showConfirmationModal(pessoa) {
-      this.showModalConfirmation = true
-      this.personDelete = pessoa
+      Dialog.create({
+        title: 'Confirmar',
+        message: 'Você tem certeza que deseja excluir?',
+        ok:{
+          push: true,
+          color: 'primary'
+        },
+        cancel: {
+          push: true,
+          color: 'negative'
+        },
+        persistent: true
+      }).onOk(() => {
+        this.personDelete = pessoa
+        this.onDelete(this.personDelete)
+      })
     },
     async onDelete(pessoa) {
       try {
