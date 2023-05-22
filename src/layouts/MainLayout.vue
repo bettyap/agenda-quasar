@@ -58,7 +58,7 @@ const linksList = [
   {
     title: 'Cadastro de Pessoa',
     icon: 'person',
-    link: '/#/cadastrarpessoa'
+    link: '/#/pessoa'
   },
   {
     title: 'Sair',

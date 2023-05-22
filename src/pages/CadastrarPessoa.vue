@@ -97,28 +97,29 @@ export default defineComponent({
       preview: null,
     }
   },
-  props: {
-    person: {
-      type: Object,
-      default() {
-        return null
-      }
+  async mounted() {
+    const pessoaId  = this.$route.params.id
+
+    if (!pessoaId){
+      return 
     }
-  },
-  mounted() {
-    if( this.person !== null ) {
-      // this.id = this.person.id
-      this.nome = this.person.nome
-      this.cpf = this.person.cpf
-      this.endereco.id = this.person.endereco.id
-      this.endereco.cep = this.person.endereco.cep
-      this.endereco.bairro = this.person.endereco.bairro
-      this.endereco.cidade = this.person.endereco.cidade
-      this.endereco.estado = this.person.endereco.estado
-      this.endereco.logradouro = this.person.endereco.logradouro
-      this.endereco.numero = this.person.endereco.numero
-      this.endereco.pais = this.person.endereco.pais
-    }
+
+    let response = await api.get('/pessoa/buscar/' + pessoaId)
+
+    this.pessoa = response.data.object
+
+    this.id = this.pessoa.id
+    this.nome = this.pessoa.nome
+    this.cpf = this.pessoa.cpf
+    this.endereco.id = this.pessoa.endereco.id
+    this.endereco.cep = this.pessoa.endereco.cep
+    this.endereco.bairro = this.pessoa.endereco.bairro
+    this.endereco.cidade = this.pessoa.endereco.cidade
+    this.endereco.estado = this.pessoa.endereco.estado
+    this.endereco.logradouro = this.pessoa.endereco.logradouro
+    this.endereco.numero = this.pessoa.endereco.numero
+    this.endereco.pais = this.pessoa.endereco.pais
+    
   },
   methods: {
     async onSubmit(event) {

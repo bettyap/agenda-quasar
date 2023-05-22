@@ -26,11 +26,12 @@
                 </div>
               </div>
               <div class="icons">
-                <q-icon 
-                  name="mode_edit_outline"
-                  size="1.5rem"
-                  @click="mostrarPerson(pessoa)"
-                />
+                <router-link :to="`/pessoa/${pessoa.id}`">
+                  <q-icon 
+                    name="mode_edit_outline"
+                    size="1.5rem"
+                  />
+                </router-link>
                 <q-icon 
                   name="delete_outline"
                   size="1.5rem"
@@ -97,10 +98,6 @@ export default defineComponent({
       }catch(error) {
         console.error(error);
       }
-    },
-    mostrarPerson(pessoa) {
-      this.showModal = true
-      this.currentPerson = pessoa
     },
     onCompleted() {
       this.infoUser()
@@ -183,7 +180,6 @@ export default defineComponent({
   .home-container-div {
     display: grid;
     grid-template-columns: auto auto;
-    margin-top: 3rem;
   }
   .home-container-card{
     margin: 1rem;
@@ -193,7 +189,7 @@ export default defineComponent({
     padding: 1rem;
   }
   .home-content-card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 3px 6px 0 rgba(0,0,0,0.2);
   }
   .avatar{
     width: 6.25rem;
@@ -214,6 +210,9 @@ export default defineComponent({
     gap: 0.75rem;
     height: 1.25rem;
     cursor: pointer;
+    color: #6da1d2;
+  }
+  .icons a {
     color: #6da1d2;
   }
   .icons i {
