@@ -20,9 +20,11 @@
                   <span>{{pessoa.endereco.cidade}}</span> 
                   <span>{{pessoa.endereco.estado}}</span>
                 </div>
-                <div class="icons" @click="showContactModal(pessoa)">
-                  <q-icon name="add" size="1.5rem" />
-                  <span>Contato</span>
+                <div class="icons">
+                  <router-link :to="`/contato/${pessoa.id}`">
+                    <q-icon name="add" size="1.5rem" />
+                    <span>Contato</span>
+                  </router-link>
                 </div>
               </div>
               <div class="icons">
