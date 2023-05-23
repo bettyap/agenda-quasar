@@ -56,7 +56,7 @@ const linksList = [
     link: '/#/meucadastro'
   },
   {
-    title: 'Cadastro de Pessoa',
+    title: 'Pessoa',
     icon: 'person',
     link: '/#/pessoa'
   },

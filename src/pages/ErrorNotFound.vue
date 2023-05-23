@@ -6,8 +6,12 @@
       </div>
 
       <div class="text-h2" style="opacity:.4">
-        Oops. Nothing here...
+        Oh-oh! Está perdido?
       </div>
+      <div class="text-h2" style="opacity:.4">
+        Ei, essa página não existe. Vamos tentar de novo?
+      </div>
+
 
       <q-btn
         class="q-mt-xl"
@@ -15,7 +19,7 @@
         text-color="blue"
         unelevated
         to="/"
-        label="Go Home"
+        label="Home"
         no-caps
       />
     </div>
