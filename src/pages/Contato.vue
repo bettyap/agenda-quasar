@@ -218,6 +218,7 @@ export default defineComponent({
       contato.isEditing = true
     },
     async toggleFavorito(contato) {
+      const pessoaId  = this.$route.params.id
       let usuario = localStorage.getItem("user")
       usuario = JSON.parse(usuario)
       console.log(contato)
@@ -227,7 +228,7 @@ export default defineComponent({
           let response = await api.post('/favorito/salvar', {
             id: contato.id,
             pessoa: {
-              id: this.pessoaContato.id
+              id: pessoaId
             },
             usuario: {
               id: usuario.id
