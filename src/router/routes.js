@@ -11,6 +11,7 @@ const routes = [
   },
   {
     path: '/login',
+    name: 'login',
     component: () => import('pages/Login.vue')
   },
 
@@ -22,15 +23,5 @@ const routes = [
   }
 
 ]
-
-  // router.beforeEach((to, _from, next) => {
-  //   const isAuthenticated = localStorage.getItem("token") ? true : false
-
-  //   if (to.name !== 'login' && !isAuthenticated){
-  //     next({ name: 'login' })
-  //   } else {
-  //     next()
-  //   }
-  // })
 
 export default routes

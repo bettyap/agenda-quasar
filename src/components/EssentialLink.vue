@@ -3,7 +3,8 @@
     clickable
     tag="a"
     target="_self"
-    :href="link"
+    v-bind="itemProps"
+    v-on="itemEventos"
   >
     <q-item-section
       v-if="icon"
@@ -37,12 +38,31 @@ export default defineComponent({
 
     link: {
       type: String,
-      default: '#'
+      default: ''
     },
 
     icon: {
       type: String,
       default: ''
+    },
+    
+    click: {
+      type: Function
+    }
+  },
+  computed: {
+    itemProps(){
+      if(!!this.link) {
+        return { href: this.link }
+      }
+
+      return {}
+    },
+    itemEventos() {
+      if(!!this.click) {
+        return {click: this.click}
+      }
+      return {}
     }
   }
 })

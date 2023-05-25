@@ -31,6 +31,7 @@
           :key="link.title"
           v-bind="link"
         />
+        
       </q-list>
     </q-drawer>
 
@@ -44,45 +45,46 @@
 import { defineComponent, ref } from 'vue'
 import EssentialLink from 'components/EssentialLink.vue'
 
-const linksList = [
-  {
-    title: 'Home',
-    icon: 'home',
-    link: ''
-  },
-  {
-    title: 'Meu Cadastro',
-    icon: 'person',
-    link: '/#/meucadastro'
-  },
-  {
-    title: 'Pessoa',
-    icon: 'person',
-    link: '/#/pessoa'
-  },
-  {
-    title: 'Sair',
-    icon: 'logout',
-    link: 'login'
-  },
-]
-
 export default defineComponent({
   name: 'MainLayout',
-
+  data() {
+    return {
+      essentialLinks: [
+        {
+          title: 'Home',
+          icon: 'home',
+          link: '/'
+        },
+        {
+          title: 'Meu Cadastro',
+          icon: 'person',
+          link: '/meucadastro'
+        },
+        {
+          title: 'Pessoa',
+          icon: 'person',
+          link: '/pessoa'
+        },
+        {
+          title: 'Sair',
+          icon: 'logout',
+          click: this.handleLogout
+        },
+      ],
+      leftDrawerOpen: false
+    }
+  },
   components: {
     EssentialLink
   },
-
-  setup () {
-    const leftDrawerOpen = ref(false)
-
-    return {
-      essentialLinks: linksList,
-      leftDrawerOpen,
-      toggleLeftDrawer () {
-        leftDrawerOpen.value = !leftDrawerOpen.value
-      }
+  methods: {
+    toggleLeftDrawer () {
+      this.leftDrawerOpen = !this.leftDrawerOpen
+    },
+    handleLogout(){
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      this.$router.push('/login');
     }
   }
 })
